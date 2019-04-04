@@ -13,7 +13,7 @@ constructor(object){
     this.newGender = object.gender;
 }
 speak(){
-    return `Hello my  name is ${this.newName}.I am from  ${this.newPhrase}`;
+    return `Hello my  name is ${this.newName}.I am from  ${this.newlocation}`;
 }
     
 }
@@ -23,6 +23,7 @@ const Jonny = new Person({
     location:"Kansas City",
     gender: "M"
   });
+  console.log(Jonny.speak());
 
 
 //   Instructor
@@ -38,27 +39,4 @@ const Jonny = new Person({
 // grade receives a student object and a subject string as arguments 
 // and logs out '{student.name} receives a perfect score on {subject}'
 
-class Instructor extends Person {
-    constructor(object){
-        super(object);
-        this.newspeciality = object.speciality;
-        this.newfavLanguage = object.favLanguage;
-        this.newcatchPhrase = object.catchPhrase;
-    }
-  
-}
-
-
-
-
-
-let JoshKnell = new Instructor({
-    name : "JoshKnell",
-    location:"California",
-    gender:"M",
-    speciality:"redux",
-    favLanguage:"JavaScript",
-    catchPhrase:"Don't forget the homies",
-
-
-});
+class 
