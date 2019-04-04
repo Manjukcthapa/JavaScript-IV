@@ -6,24 +6,24 @@
 // This method logs out a phrase 
 //Hello my name is Fred, I am from Bedrock where name and location are the object's own props
 
-class Person{
-constructor(object){
-    this.newName = object.name;
-    this.newlocation = object.location;
-    this.newGender = object.gender;
-}
-speak(){
-    return `Hello my  name is ${this.newName}.I am from  ${this.newlocation}`;
-}
-    
+class Person {
+    constructor(object) {
+        this.newName = object.name;
+        this.newlocation = object.location;
+        this.newGender = object.gender;
+    }
+    speak() {
+        return `Hello my  name is ${this.newName}.I am from  ${this.newlocation}`;
+    }
+
 }
 
 const Jonny = new Person({
-    name :"Jonny",
-    location:"Kansas City",
+    name: "Jonny",
+    location: "Kansas City",
     gender: "M"
-  });
-  console.log(Jonny.speak());
+});
+console.log(Jonny.speak());
 
 
 //   Instructor
@@ -39,36 +39,34 @@ const Jonny = new Person({
 // grade receives a student object and a subject string as arguments 
 // and logs out '{student.name} receives a perfect score on {subject}'
 
-class Instructor extends Person{
-    constructor(object){
+class Instructor extends Person {
+    constructor(object) {
         super(object);
-        this.newSpecialty = object.speciality;
+        this.newSpecialty = object.specialty;
         this.newFavLanguage = object.favLanguage;
         this.newCatchPhrase = object.CatchPhrase
     }
-    demo(subject){
+    demo(subject) {
         return ` we are learning about ${subject}`
     }
 
-    grade(subject){
-        return `${this.newName} receives a perfect score on ${subject}`
+    grade(student, subject) {
+        return `${student.name} receives a perfect score on ${subject}`
 
     }
-
-
 }
 
-let josh = new  Instructor ({
-  name: "Josh Knell",
-  location: "California",
-  age:35,
-  specialty:  "redux",
-  favLanguage :"JavaScript",
-  catchPhrase : "Don't forget the homies"
+let josh = new Instructor({
+    name: "Josh Knell",
+    location: "California",
+    age: 35,
+    specialty: "redux",
+    favLanguage: "JavaScript",
+    catchPhrase: "Don't forget the homies"
 });
 
 console.log(josh.demo("ruby"));
-console.log(josh.grade("Java"));
+console.log(josh.grade({name: "Manju"}, "Java"));
 
 
 // Student
@@ -86,32 +84,42 @@ console.log(josh.grade("Java"));
 // sprintChallenge similar to PRAssignment but logs out student.name has begun 
 // sprint challenge on {subject}
 
-class Student extends Person{
-    constructor(object){
+class Student extends Person {
+    constructor(object) {
         super(object);
-        this.newpreviousBackground  = object.previousBackground ;
+        this.newpreviousBackground = object.previousBackground;
         this.newclassName = object.className;
         this.newfavSubjects = object.favSubjects;
     }
-    
-    PRAssignment(subject){
-       return `${this.newName} has submitted a PR for ${subject}` 
+
+    listsSubjects() {
+      this.newfavSubjects.forEach(element => {
+          console.log(element)
+      });
+    }
+
+    PRAssignment(subject) {
+        return `${this.newName} has submitted a PR for ${subject}`
+    }
+
+    sprintChallenge(subject) {
+        return `${this.newName} has begun sprint challenge on ${subject}`
     }
 
 }
 
-let Manju = new  Student ({
-  name: "Manju",
-  location: "Atlanta",
-  age:20,
-  previousBackground :  "Cashier",
-  className :"Web19",
-  favSubjects : "['Html', 'CSS', 'JavaScript']"
+let Manju = new Student({
+    name: "Manju",
+    location: "Atlanta",
+    age: 20,
+    previousBackground: "Cashier",
+    className: "Web19",
+    favSubjects: ['Html', 'CSS', 'JavaScript']
 });
 
-console.log(Manju. PRAssignment("java"));
-console.log(Manju. PRAssignment("Html"));
-console.log(Manju. PRAssignment("Javascript"));
+console.log(Manju.listsSubjects());
+console.log(Manju.PRAssignment("Html"));
+console.log(Manju.sprintChallenge("Javascript"));
 
 
 // Project Manager
@@ -126,32 +134,52 @@ console.log(Manju. PRAssignment("Javascript"));
 // debugsCode a method that takes in a student object and a subject and 
 // logs out {name} debugs {student.name}'s code on {subject}
 
-class ProjectManagers extends Instructor{
-    constructor(object){
+class ProjectManagers extends Instructor {
+    constructor(object) {
         super(object);
-        this.newgradClassName  = object.gradClassName;
-        this. newfavInstructor = object. favInstructor;
+        this.newgradClassName = object.gradClassName;
+        this.newfavInstructor = object.favInstructor;
     }
-    
-StandUp(channel){
-   return `${this.newName} announces to ${channel}, @channel standy times!​​​​​`
-}
-debugsCode(studentName,subject){
-return `${this.newName} debugs ${studentName}'s code on ${subject}`;
-}
+
+    StandUp(channel) {
+        return `${this.newName} announces to ${channel}, @channel standy times!​​​​​`
+    }
+    debugsCode(student, subject) {
+        return `${this.newName} debugs ${student.name}'s code on ${subject}`;
+    }
 }
 
-let Bradly = new  ProjectManagers ({
-  name: "Bradly",
-  location: "Russia",
-  age:24,
-  specialty:  "redux",
-  favLanguage :"JavaScript",
-  catchPhrase : "Don't forget the homies",
-  gradClassName:" CS1",
-  favInstructor: " Sean"
+let Bradly = new ProjectManagers({
+    name: "Bradly",
+    location: "Russia",
+    age: 24,
+    specialty: "redux",
+    favLanguage: "JavaScript",
+    catchPhrase: "Don't forget the homies",
+    gradClassName: " CS1",
+    favInstructor: " Sean"
 
 });
 
-console.log(Bradly. StandUp("web19_Bradley"));
-console.log(Bradly. debugsCode("manju","Javascript"));
+console.log(Bradly.StandUp("web19_Bradley"));
+console.log(Bradly.debugsCode({name:"manju"}, "Javascript"));
+
+
+
+// Stretch Problem
+// Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+// Now that our students have a grade build out a method on the Instructor (this will be used by BOTH instructors and PM's)
+//  that will randomly add or subtract points to a student's grade. Math.random will help.
+// Add a graduate method to a student.
+// This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+// If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+
+
+
+
+
+
+
+
+
+
